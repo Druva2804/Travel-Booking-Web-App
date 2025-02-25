@@ -9,3 +9,10 @@ Listing(Basic Details for a post)
 ->price
 ->location
 ->Country
+
+## Functionalities 
+
+=>Added Places title's as list
+
+=>Created Button to Add new Listing to the page
+=>Created Modification(edit) option to the page also

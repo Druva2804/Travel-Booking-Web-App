@@ -24,6 +24,7 @@ app.get("/",(req,res)=>{
 
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
+app.use(express.urlencoded({extended:true}));
 
 // app.get("/testlisting",async(req,res)=>{
 //     let sampleListing=new Listing({
@@ -41,6 +42,42 @@ app.set("views",path.join(__dirname,"views"));
 app.get("/listings",async (req,res)=>{
     const allListings=await Listing.find({});
     res.render("listings/index.ejs",{allListings});
+});
+
+
+//Create new listing
+app.get("/listings/new",async(req,res)=>{
+    res.render("listings/new.ejs");
+})
+
+
+//show Route
+app.get("/listings/:id",async(req,res)=>{
+    let {id}=req.params;
+    const listing=await Listing.findById(id);
+    res.render("listings/show.ejs",{listing});
+});
+
+//Add created listing to existing listings
+app.post("/listings",async(req,res)=>{
+    let newListing=new Listing({
+        title:req.body.title,
+        description:req.body.description,
+        image:req.body.image,
+        price:req.body.price,
+        country:req.body.country,
+        location:req.body.location
+    });
+    await newListing.save();
+    res.redirect("listings");
+
+});
+
+//Edit Route
+app.get("/listings/:id/edit",async(req,res)=>{
+    let {id}=req.params;
+    const listing=await Listing.findById(id);
+    res.render("listings/edit.ejs",{listing});
 });
 
 app.listen(8080,()=>{
