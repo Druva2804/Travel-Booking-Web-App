@@ -7,20 +7,20 @@
 </head>
 <body>
     <h3>Edit form for <%=listing._id%></h3>
-    <form >
+    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT">
         <input name="title" value="<%=listing.title%>" type="text">
         <br><br>
-        <textarea name="description" value="<%=listing.description%>"textarea>
+        <textarea name="description"><%=listing.description%></textarea>
         <br><br>
-        <input name="image" value="<%=listing.image%>"type="text">
+        <input name="image" value="<%=listing.image%>" type="text">
         <br><br>
         <input name="price" value="<%=listing.price%>" type="number" text="number">
         <br><br>
         <input name="country" value="<%=listing.country%>" type="text">
         <br><br>
-        <input name="location" value="<%=listing.location%>"type="text">
+        <input name="location" value="<%=listing.location%>" type="text">
         <br><br>
-        <button>Edit</button>
+        <button type="submit">Edit</button>
     </form>
 </body>
 </html>
