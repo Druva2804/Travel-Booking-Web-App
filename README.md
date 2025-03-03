@@ -12,7 +12,7 @@ Listing(Basic Details for a post)
 
 ## Functionalities 
 
-=>Added Places title's as list
+=>Added Places title's as list.
 
 =>Created Button to Add new Listing to the page
 =>Created Modification(edit) option which edits existing list 
