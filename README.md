@@ -3,7 +3,7 @@
 ## Stage-1️⃣
 Listing(Basic Details for a post)
 
-->Title
+->Title.
 ->Description
 ->image
 ->price
