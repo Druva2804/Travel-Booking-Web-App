@@ -16,3 +16,27 @@
 .nav-link{
     color:#222222 !important;
 }
+
+.f-info-links a:hover { 
+    text-decoration: underline !important;
+ }
+
+ .f-info-links{
+    width:100%;
+ }
+
+.f-info-socials{
+    width:100%;
+    font-size:1.2rem;
+    margin-right: 1rem;;
+}
+
+.f-info{
+    display:flex;
+    height:8rem;
+    background: #ebebeb;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items:space-evenly;
+    text-align: center;
+}
