@@ -25,11 +25,20 @@
     width:100%;
  }
 
-.f-info-socials{
+.f-info-socials,
+.f-info-brand{
     width:100%;
-    font-size:1.2rem;
-    margin-right: 1rem;;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    
 }
+
+.f-info-socials i{
+    font-size:1.2rem;
+    margin-right:1rem;
+}
+
 
 .f-info{
     display:flex;
@@ -39,4 +48,5 @@
     justify-content: center;
     align-items:space-evenly;
     text-align: center;
+    
 }
