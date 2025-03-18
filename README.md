@@ -9,7 +9,7 @@ Listing(Basic Details for a post)
 ->price
 ->location
 ->Country
-
+.
 ## Functionalities 
 
 =>Added Places title's as list.
