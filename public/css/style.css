@@ -1,5 +1,5 @@
 body{
-    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: "Plus Jakarta Sans", sans-serif !important;
 }
 
 /*NavBar*/
@@ -69,4 +69,8 @@ body{
 
 .card-text p{
     font-weight: 400;
+}
+
+.listing-link{
+    text-decoration:none;
 }
