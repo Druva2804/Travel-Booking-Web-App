@@ -2,7 +2,10 @@
 <body>
     <h3>Create a New Listing</h3>
     <form method="POST" action="/listings">
-        <input name="title" placeholder="enter title">
+        <div>
+        <label for="title" class="form-label">Title</label>
+        <input name="title" placeholder="enter title" class="form-control">
+        </div>
         <br><br>
         <textarea name="description" placeholder="enter description"></textarea>
         <br><br>
