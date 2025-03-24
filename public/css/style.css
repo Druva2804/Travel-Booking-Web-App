@@ -95,3 +95,8 @@ body{
     background-color: #fe424d !important;
     border:none;
 }
+
+/*show image*/
+.show-img{
+    height:30vh;
+}

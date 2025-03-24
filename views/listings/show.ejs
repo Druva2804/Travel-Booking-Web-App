@@ -1,6 +1,16 @@
 <%layout("/layouts/boilerplate")%>
 <body>
+    <div class="row">
+        <div class="col-8 offset-2">
     <h3>Listing details :</h3>
+</div>
+    <div class="card col-6 offset-2">
+        <img src="<%=listing.image%>" class="card-img-top show-img" alt="listing_image">
+  <div class="card-body">
+    <p class="card-text"><%=listing.title%></p>
+  </div>
+    </div>
+
     <ul>
         <li><%=listing.title%></li>
         <li><%=listing.description%></li>
@@ -14,5 +24,7 @@
     <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
         <button>Delete this listing</button>
     </form>
+</div>
+
 
 </body>
