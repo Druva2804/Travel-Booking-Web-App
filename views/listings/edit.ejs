@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Listing</title>
-</head>
+<%layout("/layouts/boilerplate")%>
+<div class="row">
+    <div class="col-8 offset-2">
 <body>
     <h3>Edit form for <%=listing._id%></h3>
     <form method="POST" action="/listings/<%=listing._id%>?_method=PUT">
@@ -16,7 +12,7 @@
              class="form-control">
         </div>
         
-        <div>
+        <div class="mb-3">
             <label for="description" class="form-label">description</label>
             <textarea 
             name="description"
@@ -26,15 +22,16 @@
         </div>
 
 
-        <div>
+        <div class="mb-3">
             <label for="image" class="form-label">Image</label>
             <input name="image"
              value="<%=listing.image%>" 
              type="text"
              class="form-control">
         </div>
-        
-        <div>
+
+        <div class="row col-md-4">
+        <div class="mb-3">
             <label for="price" class="form-label">price</label>
             <input name="price" 
             value="<%=listing.price%>" 
@@ -43,16 +40,17 @@
         
         </div>
 
-        <div>
+        <div class="mb-3">
             <label for="country" class="form-label">country</label>
             <input name="country"
              value="<%=listing.country%>" 
              type="text"
              class="form-control">
         </div>
+    </div>
 
 
-        <div>
+        <div class="mb-3">
             <label for="location" class="form-label">location</label>
             <input name="location" 
             value="<%=listing.location%>" 
@@ -60,7 +58,9 @@
             class="form-control">
             </div>
 
-        <button type="submit">Edit</button>
+            <br>
+        <button type="btn btn-dark edit-btn">Edit</button>
     </form>
+</div>
+</div>
 </body>
-</html>
