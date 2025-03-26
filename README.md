@@ -5,7 +5,7 @@ Listing(Basic Details for a post)
 
 ->Title
 ->Description
-->image.
+->image
 ->price
 ->location
 ->Country
