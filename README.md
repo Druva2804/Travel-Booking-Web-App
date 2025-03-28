@@ -7,7 +7,7 @@ Listing(Basic Details for a post)
 ->Description
 ->image
 ->price
-->location.
+->location
 ->Country
 
 ## Functionalities 
