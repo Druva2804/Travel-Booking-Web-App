@@ -5,6 +5,8 @@ const Listing=require("./models/listing.js");
 const path=require("path");
 const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
+const wrapAysnc=require("./utils/wrapAsync.js");
+const ExpressError=require("./utils/ExpressError.js");
 
 
 
@@ -67,19 +69,22 @@ app.get("/listings/:id",async(req,res)=>{
 });
 
 //Add created listing to existing listings
-app.post("/listings",async(req,res)=>{
-    let newListing=new Listing({
-        title:req.body.title,
-        description:req.body.description,
-        image:req.body.image,
-        price:req.body.price,
-        country:req.body.country,
-        location:req.body.location
+app.post("/listings", wrapAysnc(async (req, res, next) => {
+    if(!req.body.listing){
+        throw new ExpressError(400,"send valid data for listing");
+    }
+    let newListing = new Listing({
+        title: req.body.title,
+        description: req.body.description,
+        image: req.body.image,
+        price: req.body.price,
+        country: req.body.country,
+        location: req.body.location
     });
-    await newListing.save();
-    res.redirect("listings");
 
-});
+    await newListing.save();
+    res.redirect("/listings"); // make sure to include the slash
+}));
 
 //Edit Route
 app.get("/listings/:id/edit",async(req,res)=>{
@@ -101,6 +106,18 @@ app.delete("/listings/:id",async(req,res)=>{
     let deletedListing=await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
     res.redirect("/listings");
+});
+
+
+app.all("*",(req,res,next)=>{
+    next(new ExpressError(404,"Page Not Found!"));
+});
+
+app.use((err,req,res,next)=>{
+    let{statusCode=500,message="something went wrong!"}=err;
+    res.status(statusCode).render("error.ejs",{message});
+    // res.render("error.ejs",{message});
+
 });
 
 app.listen(8080,()=>{

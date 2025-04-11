@@ -3,23 +3,27 @@
     <div class="row">
         <div class="col-8 offset-2">
     <h3>Create a New Listing</h3>
-    <form method="POST" action="/listings">
+    <form method="POST" action="/listings" novalidate class="needs-validation">
         <div class="mb-3">
         <label for="title" class="form-label">Title</label>
         <input 
         name="title" 
         placeholder="enter title"
-         class="form-control">
+         class="form-control"
+         required>
+         <div class="valid-feedback">Title Looks good!</div>
         </div>
 
         <div class="mb-3">
-            <label for="description" class="form-label">description</label>
+            <label for="description" class="form-label">Description</label>
             <textarea 
-            name="description" 
-            placeholder="enter description"
-            class="form-control">
-        </textarea>
-        </div>
+              id="description"
+              name="description" 
+              placeholder="Enter description"
+              class="form-control" 
+              required></textarea>
+            <div class="invalid-feedback">Please enter a short description</div>
+          </div>
         
         <div class="mb-3">
             <label for="image" class="form-label">Image Link</label>
@@ -33,9 +37,9 @@
                 <label for="price" class="form-label">Price</label>
                 <input name="price"
                  placeholder="enter price" 
-                 type="number" 
-                 text="number"
-                 class="form-control">
+                 class="form-control"
+                 required>
+                 <div class="invalid-feedback">Price should be valid price!</div>
             </div>
     
             <div class="mb-3 col-md-8">
@@ -43,7 +47,9 @@
                 <input name="country" 
                 placeholder="enter country" 
                 type="text"
-                class="form-control">
+                class="form-control"
+                required>
+                <div class="invalid-feedback">Country name should be valid</div>
             </div>
         </div>
         
@@ -53,7 +59,9 @@
             <input name="location" 
             placeholder="enter location" 
             type="text"
-            class="form-control">
+            class="form-control"
+            required>
+            <div class="invalid-feedback">location name should be valid</div>
         </div>
         
         
