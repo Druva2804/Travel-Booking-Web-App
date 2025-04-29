@@ -7,7 +7,7 @@ const methodOverride=require("method-override");
 const ejsMate=require("ejs-mate");
 const wrapAysnc=require("./utils/wrapAsync.js");
 const ExpressError=require("./utils/ExpressError.js");
-
+const {listingSchema}=require("./schema.js");
 
 
 
@@ -24,10 +24,6 @@ main()
     console.log(err);
 });
 
-app.get("/",(req,res)=>{
-    res.send("Hi,I am on ");
-});
-
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
@@ -36,6 +32,21 @@ app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
 
+app.get("/",(req,res)=>{
+    res.send("Hi,I am on ");
+});
+
+
+const validateListing=(req,res,next)=>{
+let {error}=listingSchema.validate(req.body);
+if(result.error){
+   let errMsg=error.details.map((el)=>el.message).join(",");
+   throw new ExpressError(400,errMsg);
+  }
+  else{
+    next();
+  }
+};
 // app.get("/testlisting",async(req,res)=>{
 //     let sampleListing=new Listing({
 //         title:"My New Villa",
@@ -69,10 +80,12 @@ app.get("/listings/:id",async(req,res)=>{
 });
 
 //Add created listing to existing listings
-app.post("/listings", wrapAysnc(async (req, res, next) => {
-    if(!req.body.listing){
-        throw new ExpressError(400,"send valid data for listing");
-    }
+app.post("/listings",
+    validateListing,
+    wrapAysnc(async (req, res, next) => {
+    // if(!req.body.listing){
+    //     throw new ExpressError(400,"send valid data for listing");
+    // }
     let newListing = new Listing({
         title: req.body.title,
         description: req.body.description,
@@ -81,7 +94,15 @@ app.post("/listings", wrapAysnc(async (req, res, next) => {
         country: req.body.country,
         location: req.body.location
     });
-
+    // if(!newListing.title){
+    //     throw new ExpressError(400,"Title is misssing");
+    // }
+    // if(!newListing.description){
+    //     throw new ExpressError(400,"description is misssing");
+    // }
+    // if(!newListing.location){
+    //     throw new ExpressError(400,"location is misssing");
+    // }
     await newListing.save();
     res.redirect("/listings"); // make sure to include the slash
 }));
