@@ -1,5 +1,5 @@
 const mongoose=require("mongoose");
-const schema=mongoose.schema;
+const Schema=mongoose.Schema;
 
 const reviewSchema=new Schema({
     comment:String,
@@ -15,5 +15,5 @@ const reviewSchema=new Schema({
 });
 
 
-module.exports=mongoose.model("Reviews",reviewSchema);
+module.exports=mongoose.model("Review",reviewSchema);
 

@@ -3,7 +3,9 @@ body{
     display:flex;
     flex-direction: column;
     min-height: 100vh;
+    
 }
+
 
 .container{
     flex:1;
@@ -59,8 +61,9 @@ body{
 }
 
 /*cards*/
-.card{
+.listing-card{
     border:none !important;
+    margin-bottom:2rem;
 }
 
 .card-img-top{

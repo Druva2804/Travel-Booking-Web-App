@@ -1,6 +1,6 @@
 const mongoose=require("mongoose");
-
 const Schema=mongoose.Schema;
+const Review= require("./reviews.js");
 
 const listingSchema=new Schema({
     title:{
@@ -10,11 +10,19 @@ const listingSchema=new Schema({
     description:{
         type:String,
     },
-    image:{
-        type:String,
-        default:"https://unsplash.com/photos/green-palm-trees-under-white-sky-during-daytime-I8uA8kG4O1g",
-        set:(v)=>v===""?"https://unsplash.com/photos/green-palm-trees-under-white-sky-during-daytime-I8uA8kG4O1g" : v,
-    },
+    image: {
+  type: String,
+  default: function () {
+    const keywords = ["cottage", "villa", "nature", "house", "resort"];
+    const random = keywords[Math.floor(Math.random() * keywords.length)];
+    return `https://source.unsplash.com/random/800x600/?${random}`;
+  },
+  set: function (value) {
+    return value === "" ? undefined : value;
+  }
+},
+
+
     price:Number,
     location:String,
     country:String,
@@ -25,6 +33,13 @@ const listingSchema=new Schema({
         },
 
     ],
+});
+
+listingSchema.post("findOneAndDelete",async(listing)=>{
+    if(listing){
+    await Review.deleteMany({_id:{$in: listing.reviews}});
+    }
+
 });
 
 
