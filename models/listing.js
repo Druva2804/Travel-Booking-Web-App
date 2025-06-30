@@ -11,18 +11,10 @@ const listingSchema=new Schema({
         type:String,
     },
     image: {
-  type: String,
-  default: function () {
-    const keywords = ["cottage", "villa", "nature", "house", "resort"];
-    const random = keywords[Math.floor(Math.random() * keywords.length)];
-    return `https://source.unsplash.com/random/800x600/?${random}`;
+     url: String,
+     filename: String,
   },
-  set: function (value) {
-    return value === "" ? undefined : value;
-  }
-},
-
-
+  
     price:Number,
     location:String,
     country:String,
@@ -37,8 +29,20 @@ const listingSchema=new Schema({
       type:Schema.Types.ObjectId,
       ref:"User",
 
+    },
+    geometry: { name: String,
+  location: {
+    type: {
+      type: String, // Don't do `{ location: { type: String } }`
+      enum: ['Point'], // 'location.type' must be 'Point'
+      required: true
+    },
+    coordinates: {
+      type: [Number],
+      required: true
     }
-});
+  }
+}});
 
 listingSchema.post("findOneAndDelete",async(listing)=>{
     if(listing){
